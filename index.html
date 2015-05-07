@@ -2,13 +2,57 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Vraechike</title>
+
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/request-maker.js"></script>
+    <script type="text/javascript" src="js/libs/freewall.js"></script>
+    <script src="js/libs/ripples.min.js"></script>
+    <script src="js/libs/material.min.js"></script>
+
+
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/roboto.min.css" rel="stylesheet">
+    <link href="css/lib/material.min.css" rel="stylesheet">
+    <link href="css/lib/ripples.min.css" rel="stylesheet">
+
 </head>
 <body>
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="javascript:void(0)">VRaecnhike</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active nav-main-menu"><a href="javascript:void(0)">Feed</a></li>
+            <li class="nav-main-menu"><a href="javascript:void(0)">Places</a></li>
+            <li class="nav-main-menu"><a href="javascript:void(0)">My Photos</a></li>
 
 
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="request-maker.js"></script>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:void(0)">Sign in</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="main-area">
+
+</div>
+<script src="js/init.js"></script>
+<script src="js/callbacks/PlaceCallbacks.js"></script>
+<script src="js/error_handler.js"></script>
+<script src="js/ui/navbar.js"></script>
+<script src="js/ui/MainController.js"></script>
+<script src="js/photosources/vk.js"></script>
 </body>
 </html>

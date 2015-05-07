@@ -1,0 +1,21 @@
+body {
+    background: rgba(231, 231, 231, 0.43);
+}
+.free-wall {
+    margin: 15px;
+}
+.brick {
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    width: 221.2px;
+    background-color: white;
+    border-radius: 5px;
+}
+.info {
+    padding: 15px;
+    color: #333;
+}
+.brick img {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
