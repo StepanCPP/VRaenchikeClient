@@ -19,3 +19,7 @@ body {
     padding: 0px;
     display: block;
 }
+.row{
+    padding-left: 20px;
+    padding-bottom: 10px;
+}

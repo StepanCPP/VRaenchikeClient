@@ -39,6 +39,23 @@ function ShowFeed(places)
         });
     }
 }
+function ShowPlaces(places)
+{
+    if(!places){
+        places = PLACES;
+    }
+
+    $place_area.children().remove();
+    for(var i=0;i<places.length;i++){
+        var text="",title=places[i].placeName;
+        var html='<div class="row"> <div class="col-sm-3"> <div class="list-group-item hvr-shadow" style="cursor: pointer;"><div class="row-content"><h4 class="list-group-item-heading">'+
+            title+'</h4><p class="list-group-item-text">'+
+            text+'</p></div></div> </div> </div>';
+
+        $place_area.append(html);
+    }
+
+}
 function callbackAllPhotoReceived(data)
 {
     onPhotoEndSearch();

@@ -19,12 +19,13 @@ $navbar.on('click',function(){
 });
 $navphoto.on('click',function(){
     $photo_place_feed.fadeOut(400);;
+
     $photo_area.fadeIn(400);
 
 });
 $navplace.on('click',function(){
     $photo_place_feed.fadeOut(400);
-
+    ShowPlaces();
     $place_area.fadeIn(400);
 
 });

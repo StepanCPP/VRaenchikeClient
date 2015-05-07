@@ -6,7 +6,7 @@ $(document).ready(function() {
     $.material.init();
 
     PlaceController.all(PlaceCallback.all);
-
+    //$navplace.click();
 });
 
 

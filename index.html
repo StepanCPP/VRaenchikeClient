@@ -5,12 +5,6 @@
     <title>Vraechike</title>
 
 
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-
-    <script type="text/javascript" src="js/libs/freewall.js"></script>
-    <script src="js/libs/ripples.min.js"></script>
-    <script src="js/libs/material.min.js"></script>
-    <script src="js/libs/moment-with-locales.js"></script>
 
 
     <link href="css/style.css" rel="stylesheet">
@@ -21,7 +15,16 @@
     <link href="css/lib/roboto.min.css" rel="stylesheet">
     <link href="css/lib/material.min.css" rel="stylesheet">
     <link href="css/lib/ripples.min.css" rel="stylesheet">
+    <link href="css/lib/hover-min.css" rel="stylesheet">
 
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/libs/freewall.js"></script>
+    <script src="js/libs/ripples.min.js"></script>
+    <script src="js/libs/material.min.js"></script>
+    <script src="js/libs/moment-with-locales.js"></script>
 
 </head>
 <body>
@@ -49,11 +52,13 @@
         </ul>
     </div>
 </div>
-<div class="loader"></div>
+<div class="loader" style="display: none;"></div>
 <div class="main-area">
-    <div id="freewall" class="free-wall photo-place-feed-place">
+    <div id="freewall" class="free-wall photo-place-feed-place" >
     </div>
     <div id="places" style="display: none;" class="photo-place-feed-place">
+
+
     </div>
     <div id="photo" style="display: none;" class="photo-place-feed-place">
     </div>
