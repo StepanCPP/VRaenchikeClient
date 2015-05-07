@@ -6,18 +6,22 @@
 
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/request-maker.js"></script>
+
     <script type="text/javascript" src="js/libs/freewall.js"></script>
     <script src="js/libs/ripples.min.js"></script>
     <script src="js/libs/material.min.js"></script>
+    <script src="js/libs/moment-with-locales.js"></script>
 
 
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/loader.css" rel="stylesheet">
+
     <!-- Latest compiled and minified CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/roboto.min.css" rel="stylesheet">
     <link href="css/lib/material.min.css" rel="stylesheet">
     <link href="css/lib/ripples.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -32,9 +36,9 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li class="active nav-main-menu"><a href="javascript:void(0)">Feed</a></li>
-            <li class="nav-main-menu"><a href="javascript:void(0)">Places</a></li>
-            <li class="nav-main-menu"><a href="javascript:void(0)">My Photos</a></li>
+            <li class="active nav-main-menu" id="nav-feed"><a href="javascript:void(0)">Feed</a></li>
+            <li class="nav-main-menu" id="nav-place"><a href="javascript:void(0)">Places</a></li>
+            <li class="nav-main-menu" id="nav-photo"><a href="javascript:void(0)">My Photos</a></li>
 
 
         </ul>
@@ -45,14 +49,24 @@
         </ul>
     </div>
 </div>
+<div class="loader"></div>
 <div class="main-area">
+    <div id="freewall" class="free-wall photo-place-feed-place">
+    </div>
+    <div id="places" style="display: none;" class="photo-place-feed-place">
+    </div>
+    <div id="photo" style="display: none;" class="photo-place-feed-place">
+    </div>
 
 </div>
-<script src="js/init.js"></script>
+
 <script src="js/callbacks/PlaceCallbacks.js"></script>
 <script src="js/error_handler.js"></script>
 <script src="js/ui/navbar.js"></script>
-<script src="js/ui/MainController.js"></script>
+<script src="js/request-maker.js"></script>
 <script src="js/photosources/vk.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/ui/MainController.js"></script>
+<script src="js/init.js"></script>
 </body>
 </html>

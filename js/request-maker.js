@@ -103,6 +103,7 @@ PlaceController.update= function(id,lng,lat,radius,name,callback){
 };
 PlaceController.all= function(callback){
     var data = {};
+    console.log(methods.place.all);
     $.get(methods.place.all,data,callback);
 
 };

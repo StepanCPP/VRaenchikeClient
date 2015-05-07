@@ -3,24 +3,25 @@
  */
 function getPhotosVK(lat,lng,count,radius,callbackfunc){
     var imageSizes = ['src','src_big','src_small','src_xbig','src_xxbig','src_xxxbig'];
-
+    var data = {"sort":0,
+        'lat':lat,
+        'long':lng,
+        'count':count,
+        'radius':radius
+        ,'v':'5.29'};
+    log("create request vk",data);
     $.ajax({
         type: "GET",
         url:'https://api.vk.com/method/photos.search',
         dataType: 'jsonp',
-        data:{"sort":0,
-            'lat':lat,
-            'long':lng,
-            'count':count,
-            'radius':radius
-            ,'v':'5.29'},
+        data:data,
         success:function(data){
-            Application.saveOptions();
+           // Application.saveOptions();
 
-
+            log("vk_request",data);
 
             data = data.response.items;
-            console.log(data);
+
             //for(var i=data.length-1;i>=data.length-parseInt($('#count').val()) && i>=0;i--){
             var imagesArrayOut=[];
             var sizes=[140,200,300,700,1000,1300];
@@ -46,9 +47,10 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
                     w:data[i].width,
                     h:data[i].height,
                     vkid:data[i].owner_id,
-                    title : data[i]['text']+"<br>"+moment.unix(parseInt(data[i]['date'])).format('MMMM Do YYYY, h:mm:ss a')+"<br>"+moment.unix(parseInt(data[i]['date'])).fromNow(),
+                    title : data[i]['text'],
                     lat:data[i]['lat'],
                     long:data[i]['long'],
+                    date:moment.unix(parseInt(data[i]['date'])).format('MMMM Do YYYY, h:mm:ss a')+"<br>"+moment.unix(parseInt(data[i]['date'])).fromNow(),
                     timestamp:parseInt(data[i]['date'])
                 });
 

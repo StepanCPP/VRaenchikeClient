@@ -5,14 +5,17 @@ Gallery = {};
 Gallery.target = "#freewall";
 Gallery.init = function(images)
 {
+    log("startin init gallery");
     var $gallery = $(Gallery.target);
     $gallery.children().remove();
     for(var i=0;i<images.length;i++){
+
         var image = images[i];
+        log("cur image",image);
         $html = '<div class="brick"><img src="'+
         image.thumbnail+'" width="100%"> <div class="info"> <h3>'+
-        image.title+'</h3> <h5>'+
-        image.timestamp+'</h5> </div> </div>';
+        (image.title?image.title :"")+'</h3> <h5>'+
+        image.date+'</h5> </div> </div>';
         $gallery.append($html);
     }
 

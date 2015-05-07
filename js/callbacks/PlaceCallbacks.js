@@ -4,11 +4,12 @@
 PlaceCallback = {};
 var PLACES = [];
 PlaceCallback.all = function(data){
+   data = JSON.parse(data);
+    console.log(data);
    if(isSuccess(data)){
        PLACES.length=0;
-       PLACES = data.message;
-
-
+       PLACES = JSON.parse(data.message);
+       ShowFeed();
    }
 };
 PlaceCallback.remove = function(data){
