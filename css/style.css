@@ -58,3 +58,8 @@ flex-direction: row;
 .places-list-item{
     width: 100%;
 }
+#btn-more-photo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

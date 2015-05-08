@@ -11,7 +11,7 @@ var $navbar = $(".nav-main-menu"),
     $photo_area = $("#photo"),
     $place_area = $("#places"),
     $place_items = $("#places-list"),
-    $feed_area = $("#freewall");
+    $feed_area = $("#feed");
 //==================================ON CLICK BEGIN===============================//
 $navbar.on('click',function(){
     $navbar.removeClass('active');
@@ -44,6 +44,7 @@ $navfeed.on('click',function(){
 
             showLoading();
             if(needUpdateFeedArea){
+                $button_show_more.show();
                 PlaceRequester.all(
                     function(data){
                         PlaceCallback.all(data);
@@ -56,7 +57,7 @@ $navfeed.on('click',function(){
                     });
             }else{
 
-                $feed_area.fadeIn(400);
+                closeLoading();
             }
         });
 

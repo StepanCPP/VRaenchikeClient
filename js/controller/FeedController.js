@@ -1,12 +1,12 @@
 /**
- * Created by Alexeev on 07-May-15.
+ * Created by Alexeev on 09-May-15.
  */
+var FeedController = {};
 
 var PHOTOS = [];
-//When we click on navbar
 var needUpdateFeedArea = true;
-function ShowFeed(places)
-{
+var photoPerPage=30;
+FeedController.ShowFeed = function(places){
 
     if(!places){
         places = PLACES;
@@ -31,29 +31,48 @@ function ShowFeed(places)
     {
         var place = places[i];
         onPhotoBeginSearch();
-        getPhotosVK(place.lat,place.lng,10,place.radius,function(data){
+        getPhotosVK(place.lat,place.lng,100,place.radius,function(data){
             onPhotoProgress(endedThreads,places.length);
             endedThreads++;
             log("received photo",data);
-            for(var j=0;j<data.length;j++)
-                curPhotoArray.push(data[j]);
+            for(var j=0;j<data.length;j++){
+                if($.grep(curPhotoArray, function(e){ return e.id == data[j].id; })
+                        .length==0)
+                    curPhotoArray.push(data[j]);
+            }
+
         });
     }
-}
+};
 
 function callbackAllPhotoReceived(data)
 {
     onPhotoEndSearch();
     PHOTOS = data;
+    PHOTOS.sort(function(a,b){
+        if (a.timestamp < b.timestamp)
+            return 1;
+        if (a.timestamp > b.timestamp)
+            return -1;
+        return 0;
+    });
+
+
+
+
     log("All photo received",data);
     Gallery.init(PHOTOS);
 }
+FeedController.ShowMore = function()
+{
+    Gallery.ShowMore();
+};
 
 function onPhotoBeginSearch(){
 
-   /* $mainarea.hide();
-    $loader.show();
-    */
+    /* $mainarea.hide();
+     $loader.show();
+     */
 
 }
 function onPhotoProgress(count,needed){
@@ -62,32 +81,4 @@ function onPhotoProgress(count,needed){
 function onPhotoEndSearch()
 {
     closeLoading();
-}
-
-var loadingShows = false;
-function showLoading(){
-    loadingShows = true;
-    currentShowsArea.fadeOut(400,function(){
-
-        $loader.fadeIn(400,function(){
-            loadingShows = false;
-        });
-    });
-
-}
-function closeLoading(callback){
-
-    var timeout = 10;
-    if(loadingShows) {
-        timeout=800;
-    }
-    setTimeout(function(){
-            $loader.fadeOut(400,function(){
-                currentShowsArea.fadeIn(400,callback);
-            });
-        },timeout);
-
-
-
-
 }

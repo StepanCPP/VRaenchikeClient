@@ -9,7 +9,7 @@ PlaceCallback.all = function(data){
    if(isSuccess(data)){
        PLACES.length=0;
        PLACES = JSON.parse(data.message);
-       ShowFeed();
+       FeedController.ShowFeed();
    }
 };
 PlaceCallback.remove = function(data){

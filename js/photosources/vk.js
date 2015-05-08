@@ -42,7 +42,7 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
                 //
                 imagesArrayOut.push({
                     src:allSizes[allSizes.length-1]['url'],
-                    thumbnail:allSizes[2]['url'],
+                    thumbnail:allSizes[2]['url']?allSizes[2]['url'] : allSizes[1]['url'] ,
                     thumbnail_w:150,
                     w:data[i].width,
                     h:data[i].height,
@@ -51,7 +51,8 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
                     lat:data[i]['lat'],
                     long:data[i]['long'],
                     date:moment.unix(parseInt(data[i]['date'])).format('MMMM Do YYYY, h:mm:ss a')+"<br>"+moment.unix(parseInt(data[i]['date'])).fromNow(),
-                    timestamp:parseInt(data[i]['date'])
+                    timestamp:parseInt(data[i]['date']),
+                    id:data[i].id
                 });
 
 
