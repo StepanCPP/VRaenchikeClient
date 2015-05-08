@@ -28,55 +28,55 @@ var methods = {
     }
 };
 
-var BannedController = {};
-var PhotoController = {};
-var PlaceController = {};
+var BannedRequester = {};
+var PhotoRequester = {};
+var PlaceRequester = {};
 
-BannedController.ban={};
-BannedController.ban.vk=function(link,callback){
+BannedRequester.ban={};
+BannedRequester.ban.vk=function(link,callback){
     var data = {};
     data.link = link;
     $.get(methods.banned.ban.vk,data,callback);
 };
-BannedController.ban.instagram=function(link,callback){
+BannedRequester.ban.instagram=function(link,callback){
     var data = {};
     data.link = link;
     $.get(methods.banned.ban.instagram,data,callback);
 };
 
-BannedController.disban=function(idbanned,callback){
+BannedRequester.disban=function(idbanned,callback){
     var data = {};
     data.idbanned = idbanned;
     $.get(methods.banned.disban,data,callback);
 };
-BannedController.all=function(callback){
+BannedRequester.all=function(callback){
     var data = {};
     $.get(methods.banned.all,data,callback);
 };
 
-PhotoController.like=function(url,callback){
+PhotoRequester.like=function(url,callback){
     var data = {};
     data.url  =url;
     $.get(methods.photo.like,data,callback);
 };
-PhotoController.dislike=function(url,callback){
+PhotoRequester.dislike=function(url,callback){
     var data = {};
     data.url  =url;
     $.get(methods.photo.dislike,data,callback);
 };
-PhotoController.favorite = {};
+PhotoRequester.favorite = {};
 
-PhotoController.favorite.add=function(url,callback){
+PhotoRequester.favorite.add=function(url,callback){
     var data = {};
     data.url  =url;
     $.get(methods.photo.favorite.add,data,callback);
 };
-PhotoController.favorite.remove=function(url,callback){
+PhotoRequester.favorite.remove=function(url,callback){
     var data = {};
     data.url  =url;
     $.get(methods.photo.favorite.remove,data,callback);
 };
-PhotoController.favorite.all=function(count,offset,callback){
+PhotoRequester.favorite.all=function(count,offset,callback){
 
     var data = {};
     data.count = count;
@@ -84,7 +84,7 @@ PhotoController.favorite.all=function(count,offset,callback){
     $.get(methods.photo.favorite.all,data,callback);
 };
 
-PlaceController.add= function(lng,lat,radius,name,callback){
+PlaceRequester.add= function(lng,lat,radius,name,callback){
     var data = {};
     data.lng=lng;
     data.lat = lat;
@@ -92,7 +92,7 @@ PlaceController.add= function(lng,lat,radius,name,callback){
     data.name = name;
     $.get(methods.place.add,data,callback);
 };
-PlaceController.update= function(id,lng,lat,radius,name,callback){
+PlaceRequester.update= function(id,lng,lat,radius,name,callback){
     var data = {};
     data.id  = id;
     data.lng=lng;
@@ -101,13 +101,15 @@ PlaceController.update= function(id,lng,lat,radius,name,callback){
     data.name = name;
     $.get(methods.place.update,data,callback);
 };
-PlaceController.all= function(callback){
+PlaceRequester.all= function(callback){
     var data = {};
     console.log(methods.place.all);
-    $.get(methods.place.all,data,callback);
+    $.get(methods.place.all,data,callback).fail(function(){
+        handle_error("25","can't connect to server");
+    });
 
 };
-PlaceController.remove=function(id,callback){
+PlaceRequester.remove=function(id,callback){
     var data = {};
     data.id = id;
     $.get(methods.place.all,data,callback);

@@ -16,10 +16,14 @@
     <link href="css/lib/material.min.css" rel="stylesheet">
     <link href="css/lib/ripples.min.css" rel="stylesheet">
     <link href="css/lib/hover-min.css" rel="stylesheet">
+    <link href="css/lib/material-fullpalette.min.css" rel="stylesheet">
 
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/js/libs/jquery.nouislider.all.min.js"></script>
+
+    <link href="css/lib/jquery.nouislider.min.css" rel="stylesheet">
 
     <script type="text/javascript" src="js/libs/freewall.js"></script>
     <script src="js/libs/ripples.min.js"></script>
@@ -54,24 +58,41 @@
 </div>
 <div class="loader" style="display: none;"></div>
 <div class="main-area">
+
     <div id="freewall" class="free-wall photo-place-feed-place" >
     </div>
     <div id="places" style="display: none;" class="photo-place-feed-place">
+        <div id="places-list"></div>
+        <div  id="googleMap" style="width:450px;height:380px;"></div>
+        <div id="place-info">
 
+            <input id="place-name" type="text" class="form-control floating-label"
+                   data-hint="Name of your place" placeholder="">
+            <h5>Radius</h5>
+            <div class="slider shor slider-material-orange" id="radius-input"></div>
+            <input id="place-radius" type="text" class="form-control"
+                   data-hint="" placeholder="">
 
+        </div>
     </div>
     <div id="photo" style="display: none;" class="photo-place-feed-place">
     </div>
 
 </div>
 
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="js/callbacks/PlaceCallbacks.js"></script>
 <script src="js/error_handler.js"></script>
-<script src="js/ui/navbar.js"></script>
+
 <script src="js/request-maker.js"></script>
 <script src="js/photosources/vk.js"></script>
 <script src="js/gallery.js"></script>
 <script src="js/ui/MainController.js"></script>
+<script src="js/controller/PlaceController.js"></script>
+<script src="js/ui/navbar.js"></script>
+<script src="js/ui/places.js"></script>
+<script src="js/ui/initMap.js"></script>
 <script src="js/init.js"></script>
 </body>
 </html>

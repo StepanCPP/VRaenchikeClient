@@ -10,6 +10,7 @@ var $navbar = $(".nav-main-menu"),
     $photo_place_feed = $(".photo-place-feed-place"),
     $photo_area = $("#photo"),
     $place_area = $("#places"),
+    $place_items = $("#places-list"),
     $feed_area = $("#freewall");
 //==================================ON CLICK BEGIN===============================//
 $navbar.on('click',function(){
@@ -27,7 +28,8 @@ $navplace.on('click',function(){
     $photo_place_feed.fadeOut(400);
     ShowPlaces();
     $place_area.fadeIn(400);
-
+    google.maps.event.trigger(map, 'resize');
+    map.setZoom( map.getZoom() );
 });
 $navfeed.on('click',function(){
     $photo_place_feed.fadeOut(400);
@@ -40,16 +42,3 @@ $navfeed.on('click',function(){
 
 //==================================ON CLICK END===============================//
 
-function onPhotoBeginSearch(){
-
-    $mainarea.hide();
-    $loader.show();
-}
-function onPhotoProgress(count,needed){
-
-}
-function onPhotoEndSearch()
-{
-    $loader.hide();
-    $mainarea.show();
-}

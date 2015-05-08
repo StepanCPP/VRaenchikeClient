@@ -42,7 +42,7 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
                 //
                 imagesArrayOut.push({
                     src:allSizes[allSizes.length-1]['url'],
-                    thumbnail:allSizes[1]['url'],
+                    thumbnail:allSizes[2]['url'],
                     thumbnail_w:150,
                     w:data[i].width,
                     h:data[i].height,
