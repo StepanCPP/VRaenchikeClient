@@ -19,7 +19,7 @@ $navbar.on('click',function(){
 
 });
 
-var currentShowsArea = {};
+var currentShowsArea = $feed_area;
 
 $navphoto.on('click',function(){
     $photo_place_feed.fadeOut(400);;
@@ -37,12 +37,33 @@ $navplace.on('click',function(){
     currentShowsArea = $place_area;
 });
 $navfeed.on('click',function(){
-    currentShowsArea = $feed_area;
-    $photo_place_feed.fadeOut(400);
-    $feed_area.fadeIn(400);
-    if(needUpdateFeedArea){
-        PlaceController.all(PlaceCallback.all);
-    }
+
+        currentShowsArea.fadeOut(400,
+            function(){
+            currentShowsArea = $feed_area;
+
+            showLoading();
+            if(needUpdateFeedArea){
+                PlaceRequester.all(
+                    function(data){
+                        PlaceCallback.all(data);
+                        closeLoading(function(){
+                            if(Gallery.wall){
+                                Gallery.wall.fitWidth();
+                            }
+                        });
+
+                    });
+            }else{
+
+                $feed_area.fadeIn(400);
+            }
+        });
+
+
+
+
+
 });
 
 

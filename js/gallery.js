@@ -3,6 +3,7 @@
  */
 Gallery = {};
 Gallery.target = "#freewall";
+Gallery.wall = null;
 Gallery.init = function(images)
 {
     log("startin init gallery");
@@ -33,4 +34,5 @@ Gallery.init = function(images)
     wall.container.find('.brick img').load(function() {
         wall.fitWidth();
     });
+    Gallery.wall = wall;
 };

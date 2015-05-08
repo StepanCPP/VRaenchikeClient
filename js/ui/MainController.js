@@ -4,7 +4,7 @@
 
 var PHOTOS = [];
 //When we click on navbar
-var needUpdateFeedArea = false;
+var needUpdateFeedArea = true;
 function ShowFeed(places)
 {
 
@@ -35,7 +35,8 @@ function ShowFeed(places)
             onPhotoProgress(endedThreads,places.length);
             endedThreads++;
             log("received photo",data);
-            curPhotoArray.push(data);
+            for(var j=0;j<data.length;j++)
+                curPhotoArray.push(data[j]);
         });
     }
 }
@@ -43,23 +44,24 @@ function ShowFeed(places)
 function callbackAllPhotoReceived(data)
 {
     onPhotoEndSearch();
-    PHOTOS = data[0];
+    PHOTOS = data;
     log("All photo received",data);
     Gallery.init(PHOTOS);
 }
 
 function onPhotoBeginSearch(){
 
-    $mainarea.hide();
+   /* $mainarea.hide();
     $loader.show();
+    */
+
 }
 function onPhotoProgress(count,needed){
 
 }
 function onPhotoEndSearch()
 {
-    $loader.hide();
-    $mainarea.show();
+    closeLoading();
 }
 
 var loadingShows = false;
@@ -73,7 +75,7 @@ function showLoading(){
     });
 
 }
-function closeLoading(){
+function closeLoading(callback){
 
     var timeout = 10;
     if(loadingShows) {
@@ -81,7 +83,7 @@ function closeLoading(){
     }
     setTimeout(function(){
             $loader.fadeOut(400,function(){
-                currentShowsArea.fadeIn(400);
+                currentShowsArea.fadeIn(400,callback);
             });
         },timeout);
 
