@@ -45,8 +45,6 @@ PlaceController.updatePlace = function()
             });
     }
 };
-
-
 PlaceController.ShowPlaces = function(places)
 {
     if(!places){
@@ -64,4 +62,37 @@ PlaceController.ShowPlaces = function(places)
         $place_items.append(html);
     }
 
-}
+};
+
+PlaceController.AddPlace = function(place){
+    if(!place){
+        place = CURRENTPLACE;
+    }
+    if(!CURRENTPLACE){
+        return;
+    }
+    showLoading();
+    getCurrentGeolocation(function(lng,lat){
+       PlaceRequester.add(lng,lat,200,"no name",function(data){
+           closeLoading();
+           PlaceCallback.add(data);
+           PlaceController.ShowPlaces();
+           PlaceController.selectPlace(CURRENTPLACEINDEX);
+       });
+    });
+};
+PlaceController.RemovePlace = function(place){
+    if(!place){
+        place = CURRENTPLACE;
+    }
+    if(!CURRENTPLACE){
+        return;
+    }
+    showLoading();
+    PlaceRequester.remove(place.idPlace,function(data){
+        closeLoading();
+        PlaceCallback.remove(data);
+        PlaceController.ShowPlaces();
+        PlaceController.selectPlace(0);
+    });
+};

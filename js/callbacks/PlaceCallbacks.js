@@ -13,11 +13,28 @@ PlaceCallback.all = function(data){
    }
 };
 PlaceCallback.remove = function(data){
+    data = JSON.parse(data);
 
+    if(isSuccess(data)){
+        var place = JSON.parse(data.message);
+        if(PLACES)
+            for(var i=0;i<PLACES.length;i++){
+                if(PLACES[i].idPlace==place.idPlace){
+                    PLACES.splice(i,1);
+                    break;
+                }
+            }
+    }
 };
 
 PlaceCallback.add = function(data){
+    data = JSON.parse(data);
 
+    if(isSuccess(data)){
+        var place = JSON.parse(data.message);
+        log("PlaceCallback.add",place);
+        PLACES.push(place);
+    }
 };
 PlaceCallback.update = function(data){
     data = JSON.parse(data);

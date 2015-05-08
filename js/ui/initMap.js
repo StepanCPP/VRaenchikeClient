@@ -44,6 +44,14 @@ function initializeMap() {
     map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
 }
+function getCurrentGeolocation(callback){
+    navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+
+    function handle_geolocation_query(position){
+        callback(position.coords.longitude,position.coords.latitude);
+    }
+}
+
 function initCurrentGeolocation(radius){
     if(!radius){
         radius=100;

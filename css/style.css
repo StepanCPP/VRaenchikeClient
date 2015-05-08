@@ -23,7 +23,10 @@ body {
     padding-left: 20px;
     padding-bottom: 10px;
 }
-#places-list{
+.buttons-div{
+    width: 100%;
+}
+#place-left-bar{
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column; /* works with row or column */

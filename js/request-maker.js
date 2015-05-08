@@ -113,5 +113,5 @@ PlaceRequester.all= function(callback){
 PlaceRequester.remove=function(id,callback){
     var data = {};
     data.id = id;
-    $.get(methods.place.all,data,callback);
+    $.get(methods.place.remove,data,callback);
 };

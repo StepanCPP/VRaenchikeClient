@@ -15,7 +15,7 @@
     <link href="css/lib/roboto.min.css" rel="stylesheet">
     <link href="css/lib/material.min.css" rel="stylesheet">
     <link href="css/lib/ripples.min.css" rel="stylesheet">
-    <link href="css/lib/hover-min.css" rel="stylesheet">
+  
     <link href="css/lib/material-fullpalette.min.css" rel="stylesheet">
 
 
@@ -62,7 +62,17 @@
     <div id="freewall" class="free-wall photo-place-feed-place" >
     </div>
     <div id="places" style="display: none;" class="photo-place-feed-place">
-        <div id="places-list"></div>
+        <div id="place-left-bar">
+            <div id="places-list"></div>
+            <div class="buttons-div">
+
+                <a href="javascript:void(0)" id="add-place" class="btn btn-success btn-fab btn-raised mdi-content-add"></a>
+                <a href="javascript:void(0)" id="remove-place" style="float: right" class="btn btn-danger btn-fab btn-raised mdi-content-remove"></a>
+
+            </div>
+        </div>
+
+
         <div  id="googleMap" style="width:450px;height:380px;"></div>
         <div id="place-info">
 
