@@ -52,3 +52,6 @@ flex-direction: row;
     width: 15%;
     min-width: 200px;
 }
+.places-list-item{
+    width: 100%;
+}

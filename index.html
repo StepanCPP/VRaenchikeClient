@@ -67,12 +67,14 @@
         <div id="place-info">
 
             <input id="place-name" type="text" class="form-control floating-label"
-                   data-hint="Name of your place" placeholder="">
+                   data-hint="Name of your place" placeholder="" style="padding-bottom: 5px;">
             <h5>Radius</h5>
             <div class="slider shor slider-material-orange" id="radius-input"></div>
             <input id="place-radius" type="text" class="form-control"
                    data-hint="" placeholder="">
 
+            <a href="javascript:void(0)" id="not-save-place" class="btn btn-danger btn-fab btn-raised mdi-navigation-close"></a>
+            <a href="javascript:void(0)" id="save-place" style="float: right" class="btn btn-success btn-fab btn-raised mdi-action-done"></a>
         </div>
     </div>
     <div id="photo" style="display: none;" class="photo-place-feed-place">

@@ -18,20 +18,26 @@ $navbar.on('click',function(){
     $(this).addClass('active');
 
 });
+
+var currentShowsArea = {};
+
 $navphoto.on('click',function(){
     $photo_place_feed.fadeOut(400);;
 
     $photo_area.fadeIn(400);
-
+    currentShowsArea = $photo_area;
 });
 $navplace.on('click',function(){
     $photo_place_feed.fadeOut(400);
-    ShowPlaces();
+    PlaceController.ShowPlaces();
     $place_area.fadeIn(400);
     google.maps.event.trigger(map, 'resize');
     map.setZoom( map.getZoom() );
+    placeItemClicked(0);
+    currentShowsArea = $place_area;
 });
 $navfeed.on('click',function(){
+    currentShowsArea = $feed_area;
     $photo_place_feed.fadeOut(400);
     $feed_area.fadeIn(400);
     if(needUpdateFeedArea){

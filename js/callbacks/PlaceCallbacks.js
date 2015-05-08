@@ -20,5 +20,17 @@ PlaceCallback.add = function(data){
 
 };
 PlaceCallback.update = function(data){
+    data = JSON.parse(data);
 
+    if(isSuccess(data)){
+        var place = JSON.parse(data.message);
+        if(PLACES)
+            for(var i=0;i<PLACES.length;i++){
+                if(PLACES[i].idPlace==place.idPlace){
+                    PLACES[i] = place;
+                    break;
+                }
+            }
+    }
+    console.log("photo.update server response",data);
 };

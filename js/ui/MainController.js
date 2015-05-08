@@ -61,3 +61,31 @@ function onPhotoEndSearch()
     $loader.hide();
     $mainarea.show();
 }
+
+var loadingShows = false;
+function showLoading(){
+    loadingShows = true;
+    currentShowsArea.fadeOut(400,function(){
+
+        $loader.fadeIn(400,function(){
+            loadingShows = false;
+        });
+    });
+
+}
+function closeLoading(){
+
+    var timeout = 10;
+    if(loadingShows) {
+        timeout=800;
+    }
+    setTimeout(function(){
+            $loader.fadeOut(400,function(){
+                currentShowsArea.fadeIn(400);
+            });
+        },timeout);
+
+
+
+
+}

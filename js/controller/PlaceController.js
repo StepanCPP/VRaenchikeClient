@@ -4,6 +4,7 @@
 PlaceController = {};
 PlaceController.selectPlace=function(index)
 {
+    $("#place-list-item-"+index).addClass(item_list_selected_class);
      if(index==undefined  || PLACES.length<=index){
          log("place clicked out of array",index);
          return;
@@ -22,13 +23,31 @@ PlaceController.showInfo = function(index){
 
     var cur_place =PLACES[index];
     $place_name.val(cur_place.placeName);
-    $place_radius = $("#radius-input");
+
 
     $place_radius.val(cur_place.radius);
+};
+PlaceController.updatePlace = function()
+{
+    if(CURRENTPLACE!=null){
 
+        showLoading();
+        PlaceRequester.update(CURRENTPLACE.idPlace,
+            marker.getPosition().lng(),
+            marker.getPosition().lat(),
+            $place_radius.val(),
+            $place_name.val(),
+            function(data){
+                closeLoading();
+                PlaceCallback.update(data);
+                PlaceController.ShowPlaces();
+                PlaceController.selectPlace(CURRENTPLACEINDEX);
+            });
+    }
 };
 
-function ShowPlaces(places)
+
+PlaceController.ShowPlaces = function(places)
 {
     if(!places){
         places = PLACES;

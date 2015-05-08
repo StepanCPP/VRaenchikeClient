@@ -97,8 +97,9 @@ PlaceRequester.update= function(id,lng,lat,radius,name,callback){
     data.id  = id;
     data.lng=lng;
     data.lat = lat;
-    data.radius=radius;
+    data.radius=parseInt(radius);
     data.name = name;
+    log("update place",data);
     $.get(methods.place.update,data,callback);
 };
 PlaceRequester.all= function(callback){
