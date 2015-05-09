@@ -6,22 +6,35 @@ Gallery.target = "#freewall";
 Gallery.wall = null;
 Gallery.lastPhotoIndex = 0;
 Gallery.images = [];
+var liked_class = "mdi-action-favorite",
+    unliked_class = "mdi-action-favorite-outline";
+
+
 
 Gallery.GetHtml=function(thumbnail,title,date,index){
-
+    $html_likes ='';
     var likes = 0;
+    var isLiked = false;
     if(PHOTOS && index<PHOTOS.length){
         var photo = PHOTOS[index];
         if(photo.likes){
             likes = photo.likes;
         }
+        if(photo.liked){
+            isLiked = true;
+        }
     }
+    $html_likes = '<i onclick="PhotoController.LikeDislike('+index+')" id="like-btn-'+index+'" class="like-button '+(isLiked?liked_class:unliked_class)+'">'+likes+'</i>';
+
+
 
     $html = '<div class="brick"><img  onclick="Gallery.ShowPhotoSwipe('+index+')" src="'+
     thumbnail+'" width="100%"> <div class="info"> <h3>'+
     (title?title :"")+'</h3> <h5>'+
-    (date?date:"")+'</h5> <h5>likes : '+likes+'</h5>' +
-    '<a href="javascript:void(0);" onclick="PhotoFavoriteController.Add('+index+')">Add to favorite</a> </div> </div>';
+    (date?date:"")+'</h5>'+
+    '<a href="javascript:void(0);" onclick="PhotoFavoriteController.Add('+index+')">Add to favorite</a>'+
+    $html_likes
+    +' </div> </div>';
     return $html
 };
 Gallery.init = function(images)

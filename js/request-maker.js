@@ -55,14 +55,18 @@ BannedRequester.all=function(callback){
     $.get(methods.banned.all,data,callback);
 };
 
-PhotoRequester.like=function(url,callback){
+PhotoRequester.like=function(url,idApi,PhotoService,callback){
     var data = {};
     data.url  =url;
+    data.ApiType = PhotoService;
+    data.idApi = idApi;
     $.get(methods.photo.like,data,callback);
 };
-PhotoRequester.dislike=function(url,callback){
+PhotoRequester.dislike=function(url,idApi,PhotoService,callback){
     var data = {};
     data.url  =url;
+    data.ApiType = PhotoService;
+    data.idApi = idApi;
     $.get(methods.photo.dislike,data,callback);
 };
 PhotoRequester.info = function(images,callback)

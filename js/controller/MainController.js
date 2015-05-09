@@ -30,8 +30,5 @@ function closeLoading(callback){
                 currentShowsArea.fadeIn(400,callback);
             });
         },timeout);
-
-
-
-
 }
+
