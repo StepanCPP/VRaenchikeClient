@@ -36,7 +36,7 @@ FeedController.ShowFeed = function(places){
             endedThreads++;
             log("received photo",data);
             for(var j=0;j<data.length;j++){
-                if($.grep(curPhotoArray, function(e){ return e.id == data[j].id; })
+                if($.grep(curPhotoArray, function(e){ return e.idApi == data[j].idApi; })
                         .length==0)
                     curPhotoArray.push(data[j]);
             }
@@ -61,7 +61,11 @@ function callbackAllPhotoReceived(data)
 
 
     log("All photo received",data);
-    Gallery.init(PHOTOS);
+
+    PhotoController.InfoAboutPhotos(PHOTOS,function(){
+        Gallery.init(PHOTOS);
+    });
+
 }
 FeedController.ShowMore = function()
 {

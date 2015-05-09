@@ -2,6 +2,12 @@
  * Created by Alexeev on 07-May-15.
  */
 
+PhotoServices = {
+    Vkontakte:"v",
+    Instagram:"i"
+};
+
+
 
 var loadingShows = false;
 function showLoading(){

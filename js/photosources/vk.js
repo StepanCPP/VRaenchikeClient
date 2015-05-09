@@ -52,7 +52,8 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
                     long:data[i]['long'],
                     date:moment.unix(parseInt(data[i]['date'])).format('MMMM Do YYYY, h:mm:ss a')+"<br>"+moment.unix(parseInt(data[i]['date'])).fromNow(),
                     timestamp:parseInt(data[i]['date']),
-                    id:data[i].id
+                    idApi:data[i].id,
+                    type:PhotoServices.Vkontakte
                 });
 
 

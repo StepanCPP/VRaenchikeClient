@@ -58,6 +58,9 @@ flex-direction: row;
 .places-list-item{
     width: 100%;
 }
+.brick img{
+    cursor: pointer;
+}
 #btn-more-photo{
     display: block;
     margin-left: auto;

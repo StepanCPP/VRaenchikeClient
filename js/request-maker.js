@@ -20,6 +20,7 @@ var methods = {
     photo:{
          like:serverIp+"photo/like",
          dislike:serverIp+"photo/dislike",
+        info:serverIp+"photo/info",
          favorite:{
             add:serverIp+"photo/favorite/add",
             remove:serverIp+"photo/favorite/remove",
@@ -64,16 +65,24 @@ PhotoRequester.dislike=function(url,callback){
     data.url  =url;
     $.get(methods.photo.dislike,data,callback);
 };
+PhotoRequester.info = function(images,callback)
+{
+    var data = {};
+    data.photos = JSON.stringify(images);
+    $.post(methods.photo.info,data,callback);
+};
 PhotoRequester.favorite = {};
 
-PhotoRequester.favorite.add=function(url,callback){
+PhotoRequester.favorite.add=function(url,idApi,PhotoService,callback){
     var data = {};
     data.url  =url;
+    data.ApiType = PhotoService;
+    data.idApi = idApi;
     $.get(methods.photo.favorite.add,data,callback);
 };
-PhotoRequester.favorite.remove=function(url,callback){
+PhotoRequester.favorite.remove=function(id,callback){
     var data = {};
-    data.url  =url;
+    data.id  =id;
     $.get(methods.photo.favorite.remove,data,callback);
 };
 PhotoRequester.favorite.all=function(count,offset,callback){

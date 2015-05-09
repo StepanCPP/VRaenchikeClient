@@ -8,10 +8,20 @@ Gallery.lastPhotoIndex = 0;
 Gallery.images = [];
 
 Gallery.GetHtml=function(thumbnail,title,date,index){
-    $html = '<div class="brick" onclick="Gallery.ShowPhotoSwipe('+index+')"><img src="'+
+
+    var likes = 0;
+    if(PHOTOS && index<PHOTOS.length){
+        var photo = PHOTOS[index];
+        if(photo.likes){
+            likes = photo.likes;
+        }
+    }
+
+    $html = '<div class="brick"><img  onclick="Gallery.ShowPhotoSwipe('+index+')" src="'+
     thumbnail+'" width="100%"> <div class="info"> <h3>'+
     (title?title :"")+'</h3> <h5>'+
-    (date?date:"")+'</h5> </div> </div>';
+    (date?date:"")+'</h5> <h5>likes : '+likes+'</h5>' +
+    '<a href="javascript:void(0);" onclick="PhotoFavoriteController.Add('+index+')">Add to favorite</a> </div> </div>';
     return $html
 };
 Gallery.init = function(images)
