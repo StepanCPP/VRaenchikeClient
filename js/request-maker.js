@@ -105,9 +105,11 @@ PlaceRequester.update= function(id,lng,lat,radius,name,callback){
 PlaceRequester.all= function(callback){
     var data = {};
     console.log(methods.place.all);
-    $.get(methods.place.all,data,callback).fail(function(){
+    $.get(methods.place.all,data,callback)
+        .fail(function(){
         handle_error("25","can't connect to server");
-    });
+            closeLoading();
+        });
 
 };
 PlaceRequester.remove=function(id,callback){

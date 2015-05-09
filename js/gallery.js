@@ -7,8 +7,8 @@ Gallery.wall = null;
 Gallery.lastPhotoIndex = 0;
 Gallery.images = [];
 
-Gallery.GetHtml=function(thumbnail,title,date){
-    $html = '<div class="brick"><img src="'+
+Gallery.GetHtml=function(thumbnail,title,date,index){
+    $html = '<div class="brick" onclick="Gallery.ShowPhotoSwipe('+index+')"><img src="'+
     thumbnail+'" width="100%"> <div class="info"> <h3>'+
     (title?title :"")+'</h3> <h5>'+
     (date?date:"")+'</h5> </div> </div>';
@@ -16,8 +16,9 @@ Gallery.GetHtml=function(thumbnail,title,date){
 };
 Gallery.init = function(images)
 {
+    Gallery.lastPhotoIndex = 0;
     Gallery.images = images;
-    log("startin init gallery");
+    log("startin init gallery",images);
     var $gallery = $(Gallery.target);
     $gallery.children().remove();
 
@@ -26,7 +27,7 @@ Gallery.init = function(images)
 
         var image = images[i];
         log("cur image",image);
-        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date);
+        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date,i);
         $gallery.append($html);
     }
     Gallery.lastPhotoIndex = i;
@@ -56,7 +57,7 @@ Gallery.ShowMore = function()
     for(;i<Gallery.images.length && i<photoPerPage+Gallery.lastPhotoIndex;i++) {
 
         var image = Gallery.images[i];
-        Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail,image.title,image.date));
+        Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail,image.title,image.date,i));
 
     }
 
@@ -68,4 +69,42 @@ Gallery.ShowMore = function()
     }
     Gallery.wall.fitWidth();
 };
+
+Gallery.photoSwipe = {};
+Gallery.ShowPhotoSwipe = function(index)
+{
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+
+
+
+    Gallery.photoSwipe = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, PHOTOS, {
+        index : index,
+        loop:false,
+        history:true
+    });
+
+    Gallery.photoSwipe.listen('afterChange', function() {
+        if(!Gallery.photoSwipe.currItem){
+            return;
+        }
+        console.log(Gallery.photoSwipe.currItem);
+        var linkVkButton  = $("#linkVkButton");
+        var  linkInstaButton = $("#linkInstagram");
+
+
+        if(!Gallery.photoSwipe.currItem.vkid || Gallery.photoSwipe.currItem.vkid<=0){
+            linkVkButton.hide();
+        }else{
+            linkVkButton.show();
+        }
+
+        if(!Gallery.photoSwipe.currItem.photolinkInstagram){
+            linkInstaButton.hide();
+        }else{
+            linkInstaButton.show();
+        }
+
+    });
+    Gallery.photoSwipe.init();
+}
 

@@ -18,8 +18,8 @@ $(document).ready(function() {
             setRadius(parseFloat($("#radius-input").val()));
         }});
 
-    PlaceRequester.all(PlaceCallback.all);
-    //$navplace.click();
+   // PlaceRequester.all(PlaceCallback.all);
+    $navfeed.click();
 });
 
 
