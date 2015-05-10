@@ -38,5 +38,30 @@ PhotoCallback.Favorite.add = function(data){
     }
 };
 PhotoCallback.Favorite.all = function(data){
+    data = JSON.parse(data);
+    if(isSuccess(data)){
+        data = JSON.parse(data.message);
+        log("send image to vk",data);
+        getInfoAboutPhotos(data,function(imgs){
+            for(var i=0;i<imgs.length;i++){
+                var img = imgs[i];
 
+
+                for(var j=0;j<data.length;j++){
+                    if(data[j].idApi==img.idApi){
+                        img.likes = data[j].likes;
+                        img.liked=data[j].liked;
+                    }
+                }
+            }
+
+
+            Gallery.target = "#freewall-photo";
+            PHOTOS = imgs;
+            Gallery.init(imgs);
+            closeLoading();
+        });
+
+
+    }
 };

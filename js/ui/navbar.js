@@ -22,10 +22,15 @@ $navbar.on('click',function(){
 var currentShowsArea = $feed_area;
 
 $navphoto.on('click',function(){
-    $photo_place_feed.fadeOut(400);;
 
-    $photo_area.fadeIn(400);
-    currentShowsArea = $photo_area;
+    currentShowsArea.fadeOut(400,function(){
+        currentShowsArea = $photo_area;
+        PhotoFavoriteController.All();
+    });
+
+
+
+
 });
 $navplace.on('click',function(){
     $photo_place_feed.fadeOut(400);

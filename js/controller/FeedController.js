@@ -63,6 +63,7 @@ function callbackAllPhotoReceived(data)
     log("All photo received",data);
 
     PhotoController.InfoAboutPhotos(PHOTOS,function(){
+        Gallery.target = "#freewall";
         Gallery.init(PHOTOS);
     });
 

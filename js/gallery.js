@@ -11,12 +11,13 @@ var liked_class = "mdi-action-favorite",
 
 
 
-Gallery.GetHtml=function(thumbnail,title,date,index){
+Gallery.GetHtml=function(thumbnail,title,date,index,photos){
     $html_likes ='';
     var likes = 0;
     var isLiked = false;
-    if(PHOTOS && index<PHOTOS.length){
-        var photo = PHOTOS[index];
+
+    if(photos && index<photos.length){
+        var photo = photos[index];
         if(photo.likes){
             likes = photo.likes;
         }
@@ -32,7 +33,7 @@ Gallery.GetHtml=function(thumbnail,title,date,index){
     thumbnail+'" width="100%"> <div class="info"> <h3>'+
     (title?title :"")+'</h3> <h5>'+
     (date?date:"")+'</h5>'+
-    '<a href="javascript:void(0);" onclick="PhotoFavoriteController.Add('+index+')">Add to favorite</a>'+
+    "<a href='javascript:void(0)'>&nbsp</a>"+
     $html_likes
     +' </div> </div>';
     return $html
@@ -45,12 +46,12 @@ Gallery.init = function(images)
     var $gallery = $(Gallery.target);
     $gallery.children().remove();
 
-    var i = Gallery.lastPhotoIndex;
+    var i = 0;
     for(;i<images.length && i<photoPerPage;i++){
 
         var image = images[i];
         log("cur image",image);
-        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date,i);
+        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date,i,images);
         $gallery.append($html);
     }
     Gallery.lastPhotoIndex = i;
@@ -58,7 +59,7 @@ Gallery.init = function(images)
         $button_show_more.hide();
     }
 
-    var wall = new freewall("#freewall");
+    var wall = new freewall(Gallery.target);
     wall.reset({
         selector: '.brick',
         animate: true,
@@ -81,7 +82,7 @@ Gallery.ShowMore = function()
 
         var image = Gallery.images[i];
         Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail,image.title,image.date,i));
-
+     
     }
 
     Gallery.lastPhotoIndex = i;

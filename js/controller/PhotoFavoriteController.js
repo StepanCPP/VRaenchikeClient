@@ -33,7 +33,9 @@ PhotoFavoriteController.All = function()
 {
     showLoading();
     PhotoRequester.favorite.all(200,0,function(data){
-        closeLoading();
-        PhotoCallback.Favorite.all();
+        PhotoCallback.Favorite.all(data);
+
+
+
     });
 };

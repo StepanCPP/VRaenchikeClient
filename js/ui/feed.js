@@ -6,6 +6,9 @@ $button_link_vk = $("#linkVkButton"),
 $button_link_gmaps = $("#linkGoogleMap");
 $button_show_more.on('click',function(){
     FeedController.ShowMore();
+    if(Gallery.wall){
+        Gallery.wall.fitWidth();
+    }
 });
 $button_link_vk.on('click',function(){
     if(Gallery.photoSwipe.currItem.vkid>0)
