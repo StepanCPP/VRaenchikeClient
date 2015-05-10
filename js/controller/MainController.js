@@ -28,6 +28,11 @@ function closeLoading(callback){
     setTimeout(function(){
             $loader.fadeOut(400,function(){
                 currentShowsArea.fadeIn(400,callback);
+                setTimeout(function(){
+                    if(Gallery.wall){
+                        Gallery.wall.fitWidth();
+                    }
+                },450);
             });
         },timeout);
 }

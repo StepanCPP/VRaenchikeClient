@@ -11,7 +11,7 @@ var liked_class = "mdi-action-favorite",
 
 
 
-Gallery.GetHtml=function(thumbnail,title,date,index,photos){
+Gallery.GetHtml=function(thumbnail,title,date,placeName,index,photos){
     $html_likes ='';
     var likes = 0;
     var isLiked = false;
@@ -30,10 +30,10 @@ Gallery.GetHtml=function(thumbnail,title,date,index,photos){
 
 
     $html = '<div class="brick"><img  onclick="Gallery.ShowPhotoSwipe('+index+')" src="'+
-    thumbnail+'" width="100%"> <div class="info"> <h3>'+
-    (title?title :"")+'</h3> <h5>'+
+    thumbnail+'" width="100%"> <div class="info"> <h4>'+
+    (title?title :"")+'</h4> <h5>'+
     (date?date:"")+'</h5>'+
-    "<a href='javascript:void(0)'>&nbsp</a>"+
+    "<a href='javascript:void(0)'>"+placeName+"</a>"+
     $html_likes
     +' </div> </div>';
     return $html
@@ -51,7 +51,7 @@ Gallery.init = function(images)
 
         var image = images[i];
         log("cur image",image);
-        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date,i,images);
+        $html = Gallery.GetHtml(image.thumbnail,image.title,image.date,image.placeName,i,images);
         $gallery.append($html);
     }
     Gallery.lastPhotoIndex = i;
@@ -81,8 +81,8 @@ Gallery.ShowMore = function()
     for(;i<Gallery.images.length && i<photoPerPage+Gallery.lastPhotoIndex;i++) {
 
         var image = Gallery.images[i];
-        Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail,image.title,image.date,i));
-     
+        Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail,image.title,image.date,image.placeName,i));
+
     }
 
     Gallery.lastPhotoIndex = i;

@@ -50,7 +50,7 @@ PhotoCallback.Favorite.all = function(data){
                 for(var j=0;j<data.length;j++){
                     if(data[j].idApi==img.idApi){
                         img.likes = data[j].likes;
-                        img.liked=data[j].liked;
+                        img.liked="1";
                     }
                 }
             }

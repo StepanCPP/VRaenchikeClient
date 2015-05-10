@@ -31,16 +31,20 @@ FeedController.ShowFeed = function(places){
     {
         var place = places[i];
         onPhotoBeginSearch();
-        getPhotosVK(place.lat,place.lng,100,place.radius,function(data){
+        getPhotosVK(place.lat,place.lng,100,place.radius,place.placeName,
+            function(data){
             onPhotoProgress(endedThreads,places.length);
             endedThreads++;
             log("received photo",data);
             for(var j=0;j<data.length;j++){
                 if($.grep(curPhotoArray, function(e){ return e.idApi == data[j].idApi; })
-                        .length==0)
-                    curPhotoArray.push(data[j]);
-            }
+                        .length==0){
 
+                    curPhotoArray.push(data[j]);
+                }
+
+
+            }
         });
     }
 };

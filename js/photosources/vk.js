@@ -33,11 +33,12 @@ function parsePhoto(photo,photo_size_prefix){
         date:moment.unix(parseInt(photo['date'])).format('MMMM Do YYYY, h:mm:ss a')+"<br>"+moment.unix(parseInt(photo['date'])).fromNow(),
         timestamp:parseInt(photo['date']),
         idApi:photo.owner_id+"_"+photo.id,
+        placeName:photo.placeName,
         type:PhotoServices.Vkontakte
     };
     return data;
 }
-function getPhotosVK(lat,lng,count,radius,callbackfunc){
+function getPhotosVK(lat,lng,count,radius,placeName,callbackfunc){
     var imageSizes = ['src','src_big','src_small','src_xbig','src_xxbig','src_xxxbig'];
     var data = {"sort":0,
         'lat':lat,
@@ -61,7 +62,7 @@ function getPhotosVK(lat,lng,count,radius,callbackfunc){
             //for(var i=data.length-1;i>=data.length-parseInt($('#count').val()) && i>=0;i--){
             var imagesArrayOut=[];
              for(var i=0;i<data.length;i++){
-
+                 data[i].placeName = placeName;
 
 
                 imagesArrayOut.push(parsePhoto(data[i],"photo"));
