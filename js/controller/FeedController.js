@@ -5,7 +5,7 @@ var FeedController = {};
 
 var PHOTOS = [];
 var needUpdateFeedArea = true;
-var photoPerPage=30;
+var photoPerPage=25;
 FeedController.ShowFeed = function(places){
 
     if(!places){

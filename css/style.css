@@ -4,14 +4,29 @@ body {
 .free-wall {
     margin: 15px;
 }
+.brick .section{
+    border-bottom: 1px solid #e0e0e0;
+}
 .brick {
     box-shadow: 0 0 10px rgba(0,0,0,0.7);
     width: 221.2px;
     background-color: white;
     border-radius: 5px;
 }
+.info .content{
+    padding: 6px 12px 6px;
+}
+.allPlaces{
+    display: none;
+}
+.info .placeName{
+    line-height: 48px;
+    padding-left: 12px;
+    padding-top: 12px;
+}
+
 .info {
-    padding: 15px;
+    //padding: 15px;
     color: #333;
 }
 .brick img {
@@ -56,6 +71,9 @@ flex-direction: row;
     min-width: 200px;
 }
 .like-button{
+    padding-right: 12px;
+    padding-bottom:12px ;
+    padding-top: 12px;
     float:right;
     cursor: pointer;
     -webkit-touch-callout: none;

@@ -12,8 +12,8 @@ function isSuccess(data){
     return true;
 }
 function log(title,text){
-    console.log("~");
+   /* console.log("~");
     console.log(title);
     console.log(text);
-    console.log("~");
+    console.log("~");*/
 }
