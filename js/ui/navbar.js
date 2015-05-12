@@ -27,10 +27,6 @@ $navphoto.on('click',function(){
         currentShowsArea = $photo_area;
         PhotoFavoriteController.All();
     });
-
-
-
-
 });
 $navplace.on('click',function(){
     $photo_place_feed.fadeOut(400);
@@ -40,6 +36,10 @@ $navplace.on('click',function(){
     map.setZoom( map.getZoom() );
     placeItemClicked(0);
     currentShowsArea = $place_area;
+});
+$("#vraenchike_home").on('click',function(){
+  
+   $navfeed.click();
 });
 $navfeed.on('click',function(){
 

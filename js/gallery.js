@@ -75,6 +75,7 @@ Gallery.GetHtml=function(thumbnail,title,date,placeName,index,photos){
         $html_places = "<a class='placeName' onclick='filterPlace(\""+placeName+"\")' href='javascript:void(0)'>"+placeName+"</a>&nbsp;&nbsp;";
     else{
         $html_places = "";
+
     }
     $html = '<div class="brick brick-'+placeName+'">' +
     '<img  onclick="Gallery.ShowPhotoSwipe('+index+')" src="'+
