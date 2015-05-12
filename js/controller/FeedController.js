@@ -78,7 +78,7 @@ function callbackAllPhotoReceived(data)
 }
 FeedController.ShowMore = function()
 {
-    Gallery.ShowMore();
+    Gallery.ShowMoreAsync();
 };
 
 function onPhotoBeginSearch(){

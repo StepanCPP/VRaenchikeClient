@@ -6,7 +6,11 @@ Gallery.target = "#freewall";
 Gallery.wall = null;
 Gallery.lastPhotoIndex = 0;
 Gallery.images = [];
-Gallery.interval = null;
+
+
+
+Gallery.init_interval = null;
+Gallery.showMore_interval = null;
 var liked_class = "mdi-action-favorite",
     unliked_class = "mdi-action-favorite-outline";
 var brickClasses = {};
@@ -67,19 +71,24 @@ Gallery.GetHtml=function(thumbnail,title,date,placeName,index,photos){
         else{
         $html_title = '';
     }
+    if(placeName)
+        $html_places = "<a class='placeName' onclick='filterPlace(\""+placeName+"\")' href='javascript:void(0)'>"+placeName+"</a>&nbsp;&nbsp;";
+    else{
+        $html_places = "";
+    }
     $html = '<div class="brick brick-'+placeName+'">' +
     '<img  onclick="Gallery.ShowPhotoSwipe('+index+')" src="'+
     thumbnail+'" width="100%"> <div class="info"><div class="date section"> <h5 class="content">'+
     (date?date:"")+'</h5></div>'+
-    "<a class='placeName' onclick='filterPlace(\""+placeName+"\")' href='javascript:void(0)'>"+placeName+"</a>&nbsp;&nbsp;<a class='allPlaces' onclick='showAllPlaces()' href='javascript:void(0)'>All</a>"+
+    $html_places+"<a class='allPlaces' onclick='showAllPlaces()' href='javascript:void(0)'>All</a>"+
     $html_likes
     +' </div> </div>';
     return $html
 };
 Gallery.init = function(images)
 {
-    if(Gallery.interval){
-        clearInterval(Gallery.interval);
+    if(Gallery.init_interval){
+        clearInterval(Gallery.init_interval);
     }
 
 
@@ -122,18 +131,52 @@ Gallery.init = function(images)
     });
 
     Gallery.wall = wall;
-    Gallery.count = 0;
-    Gallery.needCount = 20;
+    Gallery.init_count = 0;
+    Gallery.init_needCount = 20;
     Gallery.interval_sec = 200;
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         Gallery.interval_sec = 500;
     }
-    Gallery.interval = setInterval(function(){
-        if(Gallery.count++>Gallery.needCount){
-            clearInterval(Gallery.interval);
+    Gallery.init_interval = setInterval(function(){
+        if(Gallery.init_count++>Gallery.init_needCount){
+            clearInterval(Gallery.init_interval);
+           setTimeout(function(){
+               Gallery.wall.fitWidth();
+           },400);
         }
         Gallery.ShowMore(1);
+
+        if(Gallery.showMoreCount%3==0){
+            Gallery.wall.fitWidth();
+        }
     }, Gallery.interval_sec);
+};
+
+Gallery.ShowMoreAsync = function()
+{
+    if(Gallery.IntervalShowMoreStarted){
+        clearInterval(Gallery.showMoreInterval);
+
+    }
+    Gallery.showMoreCount = 0;
+    Gallery.showMoreNeeded = 30;
+    Gallery.ShowMoreInterval = setInterval(function(){
+        Gallery.showMoreCount+=1;
+        if(Gallery.showMoreCount>Gallery.showMoreNeeded){
+            Gallery.showMoreCount = 0;
+            Gallery.IntervalShowMoreStarted = false;
+            clearInterval(Gallery.ShowMoreInterval);
+            setTimeout(function(){
+                Gallery.wall.fitWidth();
+            },400);
+        }
+        Gallery.ShowMore(1);
+        if(Gallery.showMoreCount%3==0){
+            Gallery.wall.fitWidth();
+        }
+
+    },Gallery.interval_sec);
+    Gallery.IntervalShowMoreStarted = true;
 };
 
 
@@ -143,12 +186,12 @@ Gallery.ShowMore = function(count)
     if(!count) {
         for (; i < Gallery.images.length && i < photoPerPage + Gallery.lastPhotoIndex; i++) {
             var image = Gallery.images[i];
-            Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail, image.title, image.date, image.placeName, i));
+            Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail, image.title, image.date, image.placeName, i,Gallery.images));
         }
     }else{
         for (; i < Gallery.images.length && i < count + Gallery.lastPhotoIndex; i++) {
             var image = Gallery.images[i];
-            Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail, image.title, image.date, image.placeName, i));
+            Gallery.wall.appendBlock(Gallery.GetHtml(image.thumbnail, image.title, image.date, image.placeName, i,Gallery.images ));
         }
 
     }
@@ -159,10 +202,13 @@ Gallery.ShowMore = function(count)
     if( Gallery.lastPhotoIndex == Gallery.images.length){
         $button_show_more.hide();
     }
-    Gallery.wall.fitWidth();
+
     if(PHOTOS_ALL.length>0){
         $('.allPlaces').show();
     }
+
+
+
 };
 
 Gallery.photoSwipe = {};
