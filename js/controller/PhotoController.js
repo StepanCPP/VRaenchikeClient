@@ -19,9 +19,9 @@ PhotoController.InfoAboutPhotos = function(photos,callback)
         outPhotos.push(outPhoto);
     }
     log("photo to send",outPhotos);
-    showLoading();
+   // showLoading();
     PhotoRequester.info(outPhotos,function(data){
-        closeLoading();
+        //closeLoading();
         log("server responce Photo.info",data);
         PhotoCallback.info(data);
         if(callback){

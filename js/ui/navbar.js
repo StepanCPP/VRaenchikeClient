@@ -57,7 +57,11 @@ $navfeed.on('click',function(){
                                 if(Gallery.wall){
                                     Gallery.wall.fitWidth();
                                 }
-                                $button_show_more.show();
+
+
+                                    $button_show_more.show();
+                              
+
                             });
 
                     });

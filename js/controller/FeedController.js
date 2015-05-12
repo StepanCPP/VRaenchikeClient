@@ -89,5 +89,6 @@ function onPhotoProgress(count,needed){
 }
 function onPhotoEndSearch()
 {
-    closeLoading();
+
+
 }
