@@ -5,7 +5,11 @@ var FeedController = {};
 
 var PHOTOS = [];
 var needUpdateFeedArea = true;
-var photoPerPage=25;
+var photoPerPage=10;
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    photoPerPage = 6;
+}
 FeedController.ShowFeed = function(places){
 
     if(!places){
