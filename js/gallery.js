@@ -103,7 +103,7 @@ Gallery.init = function(images)
    // wall.filter('.page0');
     wall.reset({
         selector: '.brick',
-        animate: true,
+        animate: false,
         cellW: 200,
         cellH: 'auto',
         onResize: function() {

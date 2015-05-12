@@ -60,7 +60,7 @@ $navfeed.on('click',function(){
 
 
                                     $button_show_more.show();
-                              
+
 
                             });
 
