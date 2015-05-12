@@ -16,6 +16,7 @@ function showLoading(){
 
         $loader.fadeIn(400,function(){
             loadingShows = false;
+            console.log("show loading");
         });
     });
 }
@@ -30,8 +31,10 @@ function closeLoading(callback){
                 currentShowsArea.fadeIn(400,callback);
                 setTimeout(function(){
                     if(Gallery.wall){
+
                         Gallery.wall.fitWidth();
                     }
+                    console.log("close loading");
                 },450);
             });
         },timeout);

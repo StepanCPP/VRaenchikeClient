@@ -49,15 +49,16 @@ $navfeed.on('click',function(){
 
             showLoading();
             if(needUpdateFeedArea){
-                $button_show_more.show();
+
                 PlaceRequester.all(
                     function(data){
                         PlaceCallback.all(data);
-                        closeLoading(function(){
-                            if(Gallery.wall){
-                                Gallery.wall.fitWidth();
-                            }
-                        });
+                            closeLoading(function(){
+                                if(Gallery.wall){
+                                    Gallery.wall.fitWidth();
+                                }
+                                $button_show_more.show();
+                            });
 
                     });
             }else{

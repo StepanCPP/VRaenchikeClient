@@ -21,4 +21,4 @@ $button_link_gmaps.on('click',function(){
     $(this).attr("href", 'http://www.google.com/maps/place/'
     +Gallery.photoSwipe.currItem.lat+","+Gallery.photoSwipe.currItem.long );
 });
-$(".")
+
